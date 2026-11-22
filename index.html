@@ -1,0 +1,344 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>Aekam Collections</title>
+<meta name="description" content="Aekam Collections, Mississauga. Bridal lehengas, South Asian costume jewellery and bespoke menswear since 2019.">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Cormorant:ital,wght@0,300;0,400;0,500;1,300;1,400&family=Jost:wght@300;400;500&display=swap" rel="stylesheet">
+<link rel="preload" as="image" href="img/hero.jpg">
+<style>
+/* VOICE: couture house: unhurried, few words, photography first.
+   IDEA: a jharokha window. The opening portrait folds into an arch you look through as the collection passes.
+   PICTURE: their own bridal, jewellery and menswear photography, full bleed and framed in arches.
+   COLOUR and TYPE: kohl #120e0b and ivory #f3ece1 fields, antique gold #b8925a accent, Aekam navy for actions; Cormorant light + Jost.
+   LAYOUT: pinned arch hero, statement, horizontal edits, jewellery on kohl, bespoke menswear, client diaries, visit. */
+:root{--kohl:#120e0b;--ivory:#f3ece1;--gold:#b8925a;--gold2:#d9bd8c;--navy:#0f2a52;--mute:#8d8377;--ink:#1d1712;color-scheme:dark}
+*{box-sizing:border-box;min-width:0}
+html{scroll-padding-top:80px}
+body{margin:0;background:var(--kohl);color:var(--ivory);font:300 16px/1.65 Jost,system-ui,sans-serif;overflow-x:clip;-webkit-font-smoothing:antialiased}
+img{display:block;width:100%;height:100%;object-fit:cover}
+a{color:inherit;text-decoration:none}
+h1,h2,h3{font-family:Cormorant,Georgia,serif;font-weight:300;line-height:1.02;margin:0;text-wrap:balance}
+em{font-style:italic;color:var(--gold2)}
+.serif{font-family:Cormorant,Georgia,serif}
+.eyebrow{font-size:13px;color:var(--gold);margin:0 0 14px}
+
+/* nav */
+.nav{position:fixed;inset:0 0 auto;z-index:50;display:flex;align-items:center;gap:28px;padding:18px max(4vw,18px);transition:background .5s,padding .5s}
+.nav.solid{background:rgba(18,14,11,.82);backdrop-filter:blur(14px);padding-block:12px}
+.brand{display:flex;flex-direction:column;line-height:1;font-family:Cormorant,serif}
+.brand b{font-weight:400;font-size:26px;letter-spacing:.18em}
+.brand small{font-family:Jost;font-size:10px;letter-spacing:.42em;color:var(--gold2);margin-top:4px}
+.nav ul{display:flex;gap:30px;margin:0 0 0 auto;padding:0;list-style:none;font-size:14px}
+.nav ul a{opacity:.82;transition:opacity .3s}.nav ul a:hover{opacity:1}
+.pill{display:inline-flex;align-items:center;gap:10px;min-height:44px;padding:0 22px;border-radius:99px;border:1px solid rgba(217,189,140,.5);font-size:14px;transition:background .3s,color .3s;cursor:pointer;background:none;color:inherit;font-family:inherit}
+.pill:hover{background:var(--gold2);color:var(--kohl)}
+.pill.solid{background:var(--ivory);color:var(--kohl);border-color:var(--ivory)}.pill.solid:hover{background:var(--gold2);border-color:var(--gold2)}
+a:focus-visible,button:focus-visible,input:focus-visible,select:focus-visible{outline:2px solid var(--gold2);outline-offset:3px}
+@media(max-width:900px){.nav ul{display:none}.nav .pill{margin-inline-start:auto}}
+
+/* hero */
+.hero{position:relative;height:100vh;height:100svh;overflow:hidden;background:var(--kohl)}
+.arch{position:absolute;inset:0;overflow:hidden;will-change:clip-path}
+.arch img{position:absolute;inset:0;opacity:0;object-position:center 30%}
+.arch img.look{object-position:center 18%}
+.arch img.first{opacity:1}
+.arch::after{content:"";position:absolute;inset:0;background:linear-gradient(180deg,rgba(18,14,11,.35),rgba(18,14,11,0) 30%,rgba(18,14,11,.15) 60%,rgba(18,14,11,.75));pointer-events:none;opacity:var(--shade,1)}
+.frame{position:absolute;pointer-events:none;border:1px solid rgba(217,189,140,.55);opacity:0}
+.mark{position:absolute;left:0;right:0;bottom:6vh;text-align:center;pointer-events:none}
+.mark h1{font-size:clamp(64px,17vw,260px);letter-spacing:.12em;line-height:.85;margin-inline-start:.12em}
+.mark p{margin:18px 0 0;font-size:13px;letter-spacing:.5em;color:var(--gold2)}
+.side{position:absolute;top:50%;transform:translateY(-50%);width:min(26vw,340px);pointer-events:none}
+.side.l{left:max(5vw,20px)}.side.r{right:max(5vw,20px);text-align:right}
+.word{font-family:Cormorant,serif;font-size:clamp(44px,5.6vw,92px);line-height:.95;opacity:0}
+.cap{position:absolute;left:0;right:0;opacity:0}
+.cap .eyebrow{margin-bottom:8px}
+.cap h3{font-size:clamp(30px,2.8vw,42px)}
+.cap p{color:#cfc4b4;font-size:15px;margin:10px 0 0;max-width:30ch}
+.caps{position:absolute;left:0;right:0;top:50%;transform:translateY(-50%);height:220px}
+.side .word{position:absolute;left:0;right:0;top:50%;transform:translateY(-50%)}
+.side{height:60vh}
+.tile{position:absolute;opacity:0;width:clamp(110px,10vw,160px);box-shadow:0 30px 60px rgba(0,0,0,.45)}
+.tile .im{aspect-ratio:4/5;overflow:hidden}
+.tile span{display:block;margin-top:10px;font-size:12px;color:var(--gold2)}
+.scrollcue{position:absolute;left:50%;bottom:22px;transform:translateX(-50%);font-size:11px;letter-spacing:.3em;color:var(--mute)}
+@media(max-width:800px){.side{display:none}.tile{display:none}.mark h1{font-size:22vw}
+ .mcap{position:absolute;left:20px;right:20px;bottom:5vh;text-align:center}}
+@media(min-width:801px){.mcap{display:none}}
+.mcap .cap{text-align:center}.mcap .cap p{margin-inline:auto}
+
+/* statement */
+.ivory{background:var(--ivory);color:var(--ink)}
+.band{padding:clamp(72px,11vw,170px) max(5vw,18px)}
+.wrap{max-width:1280px;margin:0 auto}
+.stgrid{display:grid;grid-template-columns:minmax(0,1.5fr) minmax(0,1fr);gap:clamp(40px,6vw,96px);align-items:center}
+.stimg{aspect-ratio:3/4;overflow:hidden;border-radius:999px 999px 0 0}
+@media(max-width:800px){.stgrid{grid-template-columns:minmax(0,1fr)}.stimg{max-width:420px}}
+.statement p{font-family:Cormorant,serif;font-size:clamp(30px,4.2vw,62px);line-height:1.12;margin:0;max-width:22ch;text-wrap:balance}
+.statement p .chip{display:inline-block;width:1.6em;height:.9em;border-radius:99px;overflow:hidden;vertical-align:-.05em;margin:0 .12em}
+.statement .meta{display:flex;flex-wrap:wrap;gap:12px 48px;margin-top:56px;font-size:14px;color:#6b6157}
+.statement .meta b{display:block;font-family:Cormorant,serif;font-weight:400;font-size:40px;color:var(--ink);line-height:1}
+.ivory em{color:#8a6a3a}
+.men .txt .pill{align-self:flex-start}
+
+/* edits: horizontal */
+.edits{position:relative;background:var(--ivory);color:var(--ink);overflow:hidden;padding-top:104px}
+.edits-head{display:flex;justify-content:space-between;align-items:end;gap:24px;flex-wrap:wrap;padding:0 max(5vw,18px) 28px}
+.edits-head h2{font-size:clamp(44px,5vw,76px)}
+.edits-head p{max-width:36ch;color:#6b6157;margin:0}
+.track{display:flex;gap:clamp(16px,2vw,32px);padding:0 max(5vw,18px) 48px;width:max-content}
+.edit{width:calc(min(54vh,560px)*.74);flex:none}
+.edit .im{height:min(54vh,560px);overflow:hidden;border-radius:999px 999px 0 0}
+.edit .im img{transition:transform 1.2s cubic-bezier(.2,.7,.2,1)}
+.edit:hover .im img{transform:scale(1.06)}
+.edit h3{font-size:34px;margin-top:20px}
+.edit p{margin:6px 0 0;color:#6b6157;font-size:15px}
+@media(max-width:800px){.track{width:auto;overflow-x:auto;scroll-snap-type:x mandatory}.edit{scroll-snap-align:start;width:76vw}.edit .im{height:auto;aspect-ratio:3/4.2}}
+
+/* jewellery */
+.jew h2{font-size:clamp(52px,8vw,130px)}
+.jhead{display:grid;grid-template-columns:minmax(0,1.3fr) minmax(0,1fr);gap:40px;align-items:end;margin-bottom:64px}
+.jhead p{color:#cfc4b4;max-width:40ch;margin:0}
+@media(max-width:800px){.jhead{grid-template-columns:minmax(0,1fr)}}
+.jgrid{display:grid;grid-template-columns:repeat(12,minmax(0,1fr));gap:clamp(10px,1.4vw,20px)}
+.jgrid figure{margin:0;overflow:hidden;position:relative}
+.jgrid figure img{transition:transform 1.4s cubic-bezier(.2,.7,.2,1)}
+.jgrid figure:hover img{transform:scale(1.07)}
+.jgrid figcaption{position:absolute;left:16px;bottom:14px;font-size:13px;color:var(--ivory);text-shadow:0 1px 12px rgba(0,0,0,.6)}
+.g1{grid-column:1/8;grid-row:span 2;aspect-ratio:1}
+.g2{grid-column:8/13;aspect-ratio:4/3}.g3{grid-column:8/13;aspect-ratio:4/3}
+.g4{grid-column:1/5;aspect-ratio:4/5}.g5{grid-column:5/9;aspect-ratio:4/5}.g6{grid-column:9/13;aspect-ratio:4/5}
+@media(max-width:800px){.g1,.g2,.g3,.g4,.g5,.g6{grid-column:1/13;grid-row:auto;aspect-ratio:1}}
+.bangles{display:grid;grid-template-columns:minmax(0,1fr) minmax(0,1.6fr);gap:48px;align-items:center;margin-top:clamp(80px,10vw,150px)}
+.bangles h3{font-size:clamp(38px,4vw,60px)}
+.bangles p{color:#cfc4b4;margin:16px 0 26px;max-width:36ch}
+.brow{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:14px}
+.brow div{aspect-ratio:1;overflow:hidden;border-radius:50%}
+@media(max-width:800px){.bangles{grid-template-columns:minmax(0,1fr)}}
+
+/* menswear */
+.men{display:grid;grid-template-columns:minmax(0,1fr) minmax(0,1fr);min-height:100vh}
+.men .pic{position:relative;overflow:hidden;min-height:70vh}
+.men .pic img{position:absolute;inset:-8% 0;height:116%}
+.men .txt{padding:clamp(56px,8vw,120px) max(5vw,18px);display:flex;flex-direction:column;justify-content:center;background:#1a1410}
+.men h2{font-size:clamp(48px,6vw,96px)}
+.men .lead{color:#cfc4b4;max-width:38ch;margin:18px 0 40px}
+.steps{list-style:none;margin:0 0 40px;padding:0;border-top:1px solid rgba(217,189,140,.25)}
+.steps li{display:grid;grid-template-columns:120px minmax(0,1fr);gap:16px;padding:18px 0;border-bottom:1px solid rgba(217,189,140,.25)}
+.steps li b{font-family:Cormorant,serif;font-weight:400;font-size:24px;color:var(--gold2)}
+.steps li span{color:#cfc4b4}
+.men .inset{width:44%;aspect-ratio:3/4;overflow:hidden;margin-top:8px}
+@media(max-width:860px){.men{grid-template-columns:minmax(0,1fr)}.steps li{grid-template-columns:minmax(0,1fr)}}
+
+/* diaries */
+.diaries h2{font-size:clamp(52px,8vw,130px);color:var(--ink)}
+.dhead{display:flex;justify-content:space-between;align-items:end;flex-wrap:wrap;gap:20px;margin-bottom:56px}
+.dhead p{color:#6b6157;max-width:34ch;margin:0}
+.masonry{columns:4 220px;column-gap:16px}
+.masonry figure{margin:0 0 16px;break-inside:avoid;overflow:hidden}
+.masonry img{height:auto}
+
+/* visit */
+.visit{display:grid;grid-template-columns:minmax(0,1fr) minmax(0,1fr);gap:clamp(40px,6vw,100px)}
+.visit h2{font-size:clamp(48px,6vw,96px)}
+.addr{margin:28px 0 0;font-size:18px;color:#e8dfd1}
+.addr small{display:block;color:var(--mute);font-size:13px;margin-top:6px}
+form{display:grid;gap:18px}
+label{display:grid;gap:6px;font-size:13px;color:var(--gold2)}
+input,select{font:400 16px Jost,sans-serif;color:var(--ivory);background:transparent;border:0;border-bottom:1px solid rgba(217,189,140,.4);padding:12px 0;min-height:44px;border-radius:0}
+select option{color:#111}
+.two{display:grid;grid-template-columns:minmax(0,1fr) minmax(0,1fr);gap:18px}
+.done{display:none;padding:22px;border:1px solid rgba(217,189,140,.4);color:#e8dfd1}
+@media(max-width:860px){.visit,.two{grid-template-columns:minmax(0,1fr)}}
+footer{padding:48px max(5vw,18px);border-top:1px solid rgba(217,189,140,.18);display:flex;flex-wrap:wrap;gap:14px 40px;align-items:center;font-size:14px;color:var(--mute)}
+footer .brand{color:var(--ivory);margin-inline-end:auto}
+.proto{font-size:12px;color:var(--mute)}
+.reveal{opacity:0;transform:translateY(40px)}
+@media(prefers-reduced-motion:reduce){.reveal{opacity:1;transform:none}}
+</style>
+</head>
+<body>
+<header class="nav" id="nav">
+  <a class="brand" href="#top" aria-label="Aekam Collections"><b>AEKAM</b><small>COLLECTIONS</small></a>
+  <ul><li><a href="#edits">Collections</a></li><li><a href="#jewellery">Jewellery</a></li><li><a href="#menswear">Menswear</a></li><li><a href="#diaries">Client diaries</a></li><li><a href="#visit">Visit</a></li></ul>
+  <a class="pill" href="#visit">Book an appointment</a>
+</header>
+
+<section class="hero" id="top" aria-label="Aekam Collections">
+  <div class="arch" id="arch">
+    <img class="first" src="img/hero.jpg" alt="Bride in an embroidered lehenga and gold jewellery at golden hour">
+    <img class="look" src="img/arch-olive.jpg" alt="Antique gold zardozi lehenga">
+    <img class="look" src="img/arch-red.jpg" alt="Bridal red lehenga with heavy embroidery">
+    <img class="look" src="img/arch-champagne.jpg" alt="Champagne lehenga with sheer dupatta">
+    <img class="look" src="img/arch-portrait.jpg" alt="Kundan and emerald jewellery with a navy dupatta">
+  </div>
+  <div class="frame" id="frame"></div>
+  <div class="mark" id="mark"><h1>AEKAM</h1><p>TIMELESS PIECES · EST. 2019</p></div>
+
+  <div class="side l">
+    <div class="word" id="w1">Timeless<br><em>pieces,</em></div>
+    <div class="caps">
+      <div class="cap"><p class="eyebrow">The bride</p><h3>Antique gold zardozi</h3><p>Lehengas hand-embroidered for the day you will remember.</p></div>
+      <div class="cap"><p class="eyebrow">Bridal red</p><h3>The classic, done properly</h3><p>Heavy work, rich velvet tones, a dupatta made for the pheras.</p></div>
+      <div class="cap"><p class="eyebrow">The reception</p><h3>Champagne and blush</h3><p>Softer palettes and sheer layers for the evening.</p></div>
+      <div class="cap"><p class="eyebrow">The finishing</p><h3>Kundan and emerald</h3><p>Costume jewellery chosen to complete the outfit.</p></div>
+    </div>
+  </div>
+  <div class="side r"><div class="word" id="w2">treasured for<br><em>generations</em></div></div>
+
+  <figure class="tile" id="t1" style="left:calc(50% - min(17vw,28vh) - clamp(110px,10vw,160px) - 48px);top:56vh;margin:0"><div class="im"><img src="img/tile-choker.jpg" alt=""></div><span>Kundan choker sets</span></figure>
+  <figure class="tile" id="t2" style="left:calc(50% + min(17vw,28vh) + 48px);top:15vh;margin:0"><div class="im"><img src="img/tile-bangles.jpg" alt=""></div><span>Kashmiri glass bangles</span></figure>
+  <figure class="tile" id="t3" style="right:max(5vw,20px);top:50vh;margin:0"><div class="im"><img src="img/tile-sherwani.jpg" alt=""></div><span>Bespoke sherwanis</span></figure>
+
+  <div class="mcap"><div class="cap"><p class="eyebrow">The bride</p><h3>Antique gold zardozi</h3></div><div class="cap"><p class="eyebrow">Bridal red</p><h3>The classic, done properly</h3></div><div class="cap"><p class="eyebrow">The reception</p><h3>Champagne and blush</h3></div><div class="cap"><p class="eyebrow">The finishing</p><h3>Kundan and emerald</h3></div></div>
+  <div class="scrollcue" id="cue">SCROLL</div>
+</section>
+
+<section class="band ivory statement">
+  <div class="wrap stgrid"><div>
+    <p class="reveal">Six years of dressing <em>brides</em> <span class="chip"><img src="img/c2.jpg" alt=""></span>, families and festivals, with lehengas, jewellery <span class="chip"><img src="img/j-kundan.jpg" alt=""></span> and bespoke menswear under one roof in Mississauga.</p>
+    <div class="meta reveal"><div><b>2019</b>Established</div><div><b>Bridal</b>By appointment</div><div><b>Bespoke</b>Menswear to measure</div></div>
+  </div><div class="stimg reveal"><img src="img/statement.jpg" alt="Gold zardozi lehenga with olive dupatta" loading="lazy"></div></div>
+</section>
+
+<section class="edits" id="edits">
+  <div class="edits-head"><h2>The edits</h2><p>From the wedding week to Eid and every sangeet between, each edit is styled with jewellery to match.</p></div>
+  <div class="track" id="track">
+    <a class="edit" href="#visit"><div class="im"><img src="img/edit-bridal.jpg" alt="Bride in red lehenga" loading="lazy"></div><h3>Bridal</h3><p>Reds, maroons and heirloom golds</p></a>
+    <a class="edit" href="#visit"><div class="im"><img src="img/edit-lehenga.jpg" alt="Pink floral lehenga with a long train" loading="lazy"></div><h3>Lehengas</h3><p>Pastels and florals for the wedding week</p></a>
+    <a class="edit" href="#visit"><div class="im"><img src="img/edit-olive.jpg" alt="Olive lehenga with jewellery" loading="lazy"></div><h3>Mehndi and sangeet</h3><p>Olive, mint and colour that moves</p></a>
+    <a class="edit" href="#visit"><div class="im"><img src="img/edit-suits.jpg" alt="Lilac embroidered suit" loading="lazy"></div><h3>Suits and shararas</h3><p>Embroidered sets for every occasion</p></a>
+    <a class="edit" href="#visit"><div class="im"><img src="img/edit-festive.jpg" alt="Lilac festive outfit" loading="lazy"></div><h3>Eid and festive</h3><p>Soft lilacs, pearls and sheer dupattas</p></a>
+    <a class="edit" href="#menswear"><div class="im"><img src="img/edit-menswear.jpg" alt="Embroidered menswear" loading="lazy"></div><h3>Menswear</h3><p>Sherwanis and kurta sets to measure</p></a>
+  </div>
+</section>
+
+<section class="band jew" id="jewellery">
+  <div class="wrap">
+    <div class="jhead"><div><p class="eyebrow">South Asian costume jewellery</p><h2 class="reveal">Adorned <em>in gold</em></h2></div><p class="reveal">Kundan, polki, pearl and emerald, from statement bridal chokers to the tikka that finishes the look.</p></div>
+    <div class="jgrid">
+      <figure class="g1 reveal"><img src="img/j-kundan.jpg" alt="Kundan necklace set with carved stone drops" loading="lazy"><figcaption>Kundan bridal set</figcaption></figure>
+      <figure class="g2 reveal"><img src="img/j-choker.jpg" alt="Antique gold choker and earrings" loading="lazy"><figcaption>Antique choker</figcaption></figure>
+      <figure class="g3 reveal"><img src="img/j-emerald.jpg" alt="Emerald passa jewellery" loading="lazy"><figcaption>Emerald passa</figcaption></figure>
+      <figure class="g4 reveal"><img src="img/j-polki.jpg" alt="Polki necklace with ruby and pearl" loading="lazy"><figcaption>Polki and pearl</figcaption></figure>
+      <figure class="g5 reveal"><img src="img/j-mint.jpg" alt="Mint bead necklace and jhumkas" loading="lazy"><figcaption>Mint drop set</figcaption></figure>
+      <figure class="g6 reveal"><img src="img/j-tikka.jpg" alt="Emerald jhoomar" loading="lazy"><figcaption>Jhoomar</figcaption></figure>
+    </div>
+    <div class="bangles">
+      <div class="reveal"><p class="eyebrow">Back in stock</p><h3>Kashmiri glass bangles</h3><p>Now in new colours and sizes. Stacked, mixed and matched to your outfit in store.</p><a class="pill" href="#visit">Ask about sizes</a></div>
+      <div class="brow reveal"><div><img src="img/b-green.jpg" alt="Green glass bangle stack" loading="lazy"></div><div><img src="img/b-lilac.jpg" alt="Lilac glass bangle stack" loading="lazy"></div><div><img src="img/b-aqua.jpg" alt="Aqua glass bangle stack" loading="lazy"></div></div>
+    </div>
+  </div>
+</section>
+
+<section class="men" id="menswear">
+  <div class="pic"><img id="menpic" src="img/men-white.jpg" alt="Groom in an ivory embroidered sherwani beside his bride" loading="lazy"></div>
+  <div class="txt">
+    <p class="eyebrow">Aekam Menswear · Bespoke collection</p>
+    <h2 class="reveal">Made to <em>your</em> measure</h2>
+    <p class="lead reveal">New fabrics, new silhouettes, the same premium finish. Sherwanis, bandhgalas and kurta sets, coordinated with the bride and the whole family.</p>
+    <ol class="steps reveal"><li><b>Consult</b><span>Bring the occasion, the colours and the look you have in mind.</span></li><li><b>Measure</b><span>Fitted in store, with fabric and embroidery chosen together.</span></li><li><b>Deliver</b><span>Finished, pressed and styled to match the bride.</span></li></ol>
+    <a class="pill solid" href="#visit">Book a fitting</a>
+  </div>
+</section>
+
+<section class="band ivory diaries" id="diaries">
+  <div class="wrap">
+    <div class="dhead"><h2 class="reveal">Client <em>diaries</em></h2><p class="reveal">Real brides and families, styled head to toe by Aekam.</p></div>
+    <div class="masonry">
+      <figure class="reveal"><img src="img/c1.jpg" alt="Bride in silver lehenga with pink kundan" loading="lazy"></figure>
+      <figure class="reveal"><img src="img/c5.jpg" alt="Bride in blush floral lehenga" loading="lazy"></figure>
+      <figure class="reveal"><img src="img/c3.jpg" alt="Bride with jhoomar and aqua dupatta" loading="lazy"></figure>
+      <figure class="reveal"><img src="img/c2.jpg" alt="Bride with gold choker and maang tikka" loading="lazy"></figure>
+      <figure class="reveal"><img src="img/c6.jpg" alt="Bride in maroon with heavy gold jewellery" loading="lazy"></figure>
+      <figure class="reveal"><img src="img/c4.jpg" alt="Bride in ivory with kundan set" loading="lazy"></figure>
+      <figure class="reveal"><img src="img/c7.jpg" alt="Sage lehenga full length" loading="lazy"></figure>
+      <figure class="reveal"><img src="img/c8.jpg" alt="Gold lehenga with choker" loading="lazy"></figure>
+    </div>
+  </div>
+</section>
+
+<section class="band" id="visit">
+  <div class="wrap visit">
+    <div>
+      <p class="eyebrow">Visit the store</p>
+      <h2 class="reveal">Come in, <em>try it on</em></h2>
+      <p class="addr">812 Britannia Rd West, Unit 107<br>Mississauga, Ontario<small>Bridal styling by appointment</small></p>
+      <p style="margin-top:28px"><a class="pill" href="https://www.instagram.com/aekamcollections/">Instagram @aekamcollections</a></p>
+    </div>
+    <div>
+      <form id="book" novalidate>
+        <div class="two"><label>Name<input id="f-name" required autocomplete="name"></label><label>Phone or email<input id="f-contact" required></label></div>
+        <div class="two"><label>Looking for<select id="f-type"><option>Bridal outfit</option><option>Wedding guest or festive</option><option>Jewellery</option><option>Bespoke menswear</option></select></label><label>Event date<input id="f-date" type="date"></label></div>
+        <button class="pill solid" type="submit" style="justify-self:start">Request appointment</button>
+      </form>
+      <div class="done" id="done" role="status"></div>
+      <p class="proto">Prototype: this form isn't connected yet.</p>
+    </div>
+  </div>
+</section>
+
+<footer><span class="brand"><b>AEKAM</b><small>COLLECTIONS</small></span><span>Mississauga, Ontario</span><span>Est. 2019</span><span>aekamcollections.com</span></footer>
+
+<script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/gsap.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/ScrollTrigger.min.js"></script>
+<script>
+{
+const nav=document.getElementById('nav');
+addEventListener('scroll',()=>nav.classList.toggle('solid',scrollY>40),{passive:true});
+document.getElementById('book').addEventListener('submit',e=>{e.preventDefault();const n=document.getElementById('f-name').value.trim(),c=document.getElementById('f-contact').value.trim();const d=document.getElementById('done');
+  if(!n||!c){d.style.display='block';d.textContent='Please add your name and a phone number or email.';return}
+  d.style.display='block';d.textContent=`Thank you, ${n}. In the live site this request goes to the Aekam team, who will confirm a time.`;e.target.style.display='none'});
+
+const reduce=matchMedia('(prefers-reduced-motion: reduce)').matches;
+const arch=document.getElementById('arch'),frame=document.getElementById('frame');
+const imgs=[...arch.querySelectorAll('img')];
+const capsets=[[...document.querySelectorAll('.side.l .cap')],[...document.querySelectorAll('.mcap .cap')]];
+
+/* arch geometry: p=0 full bleed, p=1 jharokha window */
+function geom(){const W=innerWidth,H=innerHeight,m=W<=800;const w=m?W*.78:Math.min(W*.34,H*.56),top=m?H*.13:H*.14,bot=m?H*.2:H*.07;return{W,H,w,top,bot,x:(W-w)/2}}
+function setArch(p){const g=geom(),l=g.x*p,t=g.top*p,b=g.bot*p,r=(g.w/2)*p;
+  arch.style.clipPath=`inset(${t}px ${l}px ${b}px ${l}px round ${r}px ${r}px 0 0)`;arch.style.setProperty('--shade',1-p*.8);
+  arch.querySelectorAll('.look').forEach(im=>Object.assign(im.style,{inset:'auto',left:g.x+'px',top:g.top+'px',width:g.w+'px',height:g.H-g.top-g.bot+'px'}));
+  Object.assign(frame.style,{left:g.x-14+'px',top:g.top-14+'px',width:g.w+28+'px',height:g.H-g.top-g.bot+14+'px',borderRadius:`${g.w/2+14}px ${g.w/2+14}px 0 0`})}
+
+if(window.gsap&&window.ScrollTrigger&&!reduce){
+  gsap.registerPlugin(ScrollTrigger);
+  const st={p:0};setArch(0);
+  const tl=gsap.timeline({scrollTrigger:{trigger:'.hero',start:'top top',end:'+=420%',scrub:.8,pin:true,anticipatePin:1,invalidateOnRefresh:true}});
+  tl.to(st,{p:1,duration:2,ease:'power2.inOut',onUpdate:()=>setArch(st.p)},0)
+    .to('#mark',{yPercent:40,opacity:0,duration:1.2,ease:'power1.in'},0)
+    .to('#cue',{opacity:0,duration:.3},0)
+    .fromTo(imgs[0],{scale:1},{scale:1.12,duration:2},0)
+    .to(frame,{opacity:1,duration:.8},1.6)
+    .fromTo('#w1',{opacity:0,x:-40},{opacity:1,x:0,duration:1},1.6)
+    .fromTo('#w2',{opacity:0,x:40},{opacity:1,x:0,duration:1},1.8)
+    .to(['#w1','#w2'],{opacity:0,y:-30,duration:.6},2.9);
+  [1,2,3,4].forEach((k,i)=>{const at=3+i*1.6;
+    tl.fromTo(imgs[k],{opacity:0,scale:1.18},{opacity:1,scale:1,duration:1,ease:'power2.out'},at)
+      .to(imgs[k],{scale:1.04,duration:1.6,ease:'none'},at+1);
+    capsets.forEach(cs=>{tl.fromTo(cs[i],{opacity:0,y:24},{opacity:1,y:0,duration:.6},at+.2);if(i<3)tl.to(cs[i],{opacity:0,y:-24,duration:.5},at+1.5)})});
+  [['#t1',-60,4],['#t2',60,5],['#t3',60,6.4]].forEach(([s,x,at])=>tl.fromTo(s,{opacity:0,x,y:60,rotate:x>0?4:-4},{opacity:1,x:0,y:0,rotate:0,duration:1,ease:'power3.out'},at).to(s,{y:-40,duration:2.5,ease:'none'},at+1));
+  tl.to({},{duration:.8});
+
+  /* horizontal edits on wide screens */
+  ScrollTrigger.matchMedia({'(min-width: 801px)':()=>{const tr=document.getElementById('track');
+    gsap.to(tr,{x:()=>-(tr.scrollWidth-innerWidth),ease:'none',scrollTrigger:{trigger:'#edits',start:'top top',end:()=>'+='+(tr.scrollWidth-innerWidth),scrub:.6,pin:true,invalidateOnRefresh:true}})}});
+
+  gsap.utils.toArray('.reveal').forEach(el=>gsap.to(el,{opacity:1,y:0,duration:1.1,ease:'power3.out',scrollTrigger:{trigger:el,start:'top 88%'}}));
+  gsap.to('#menpic',{yPercent:-8,ease:'none',scrollTrigger:{trigger:'#menswear',start:'top bottom',end:'bottom top',scrub:true}});
+  addEventListener('load',()=>ScrollTrigger.refresh());
+}else{
+  /* static fallback: framed arch with the first look */
+  setArch(1);frame.style.opacity=1;document.getElementById('mark').style.opacity=0;
+  ['#w1','#w2'].forEach(s=>document.querySelector(s).style.opacity=1);
+  imgs[1].style.opacity=1;capsets.forEach(cs=>cs[0].style.opacity=1);
+  document.querySelectorAll('.reveal').forEach(el=>{el.style.opacity=1;el.style.transform='none'});
+  addEventListener('resize',()=>setArch(1));
+}
+}
+</script>
+</body>
+</html>
